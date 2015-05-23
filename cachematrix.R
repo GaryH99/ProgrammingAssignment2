@@ -1,8 +1,14 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Since inverting a matrix can be time consuming as a program runs,
+##      we want to create a way to use a cached version of the inverted matrix
+##      if the matrix has not changed since the last time the inversion was needed
 
-## Write a short comment describing this function
-
+## makeCacheMatrix(x)
+##      x is matrix to be inverted
+##      this function creates the following functions
+##      set -- sets the matrix
+##      get -- gets the matrix
+##      setinv -- sets inverse of matrix (direct calls to this are discouraged)
+##      getinv -- gets inverse of matrix
 makeCacheMatrix <- function(x = matrix()) {
         inv <- NULL
         set <- function(y) {
@@ -19,8 +25,11 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
-
+## cacheSolve
+##  input -- matrix to be inverted
+##  output -- inverted matrix  (NULL if no inverted matrix available)
+##
+##  returns cached inversion if available or computes inversion if necessary
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
         inv <- x$getinv()
